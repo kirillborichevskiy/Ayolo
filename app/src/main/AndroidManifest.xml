@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".AyoloApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,8 +14,9 @@
         android:theme="@style/Theme.Ayolo"
         tools:targetApi="31">
         <activity
-            android:name="com.kirillborichevskiy.ayolo.MainActivity"
+            android:name="com.kirillborichevskiy.ayolo.ui.screen.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Ayolo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

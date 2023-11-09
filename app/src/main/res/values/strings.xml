@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Ayolo</string>
+    <string name="chat_name">Chat name</string>
+    <string name="create_new_chat">Create new chat</string>
+    <string name="create_first_chat_now">Create your first chat now</string>
+    <string name="specify_chat_name">Please specify unique chat name</string>
+    <string name="recent_chats">Recent Chats</string>
+    <string name="error_fetching_chat">Error fetching chat from the database</string>
 </resources>
