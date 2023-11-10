@@ -1,7 +1,7 @@
 package com.kirillborichevskiy.ayolo.usecase
 
-import com.kirillborichevskiy.domain.usecase.impl.IsChatNameUsedUseCaseImpl
 import com.kirillborichevskiy.domain.repository.ChatRepository
+import com.kirillborichevskiy.domain.usecase.IsChatNameUsedUseCase
 import com.kirillborichevskiy.domain.util.DatabaseException
 import com.kirillborichevskiy.domain.util.Resource
 import kotlinx.coroutines.runBlocking
@@ -22,12 +22,12 @@ internal class IsUseNameUsedUseCaseImplTest {
     @Mock
     lateinit var chatRepository: ChatRepository
 
-    private lateinit var isChatNameUsedUseCaseImpl: IsChatNameUsedUseCaseImpl
+    private lateinit var isChatNameUsedUseCaseImpl: IsChatNameUsedUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        isChatNameUsedUseCaseImpl = IsChatNameUsedUseCaseImpl(chatRepository)
+        isChatNameUsedUseCaseImpl = IsChatNameUsedUseCase(chatRepository)
     }
 
     @Test
@@ -39,7 +39,7 @@ internal class IsUseNameUsedUseCaseImplTest {
                 Resource.Success(1),
             )
 
-            isChatNameUsedUseCaseImpl.invoke("")
+            isChatNameUsedUseCaseImpl.invoke(IsChatNameUsedUseCase.Params(chatName = ""))
 
             Mockito.verify(chatRepository, Mockito.times(1)).getChatNameCount("")
         }
@@ -51,10 +51,18 @@ internal class IsUseNameUsedUseCaseImplTest {
         runBlocking {
             Mockito.`when`(chatRepository.getChatNameCount("")).thenReturn(databaseModel)
 
-            isChatNameUsedUseCaseImpl.invoke("")
+            isChatNameUsedUseCaseImpl.invoke(IsChatNameUsedUseCase.Params(chatName = ""))
 
             when (val chats = chatRepository.getChatNameCount("")) {
-                is Resource.Success -> Assert.assertEquals(isChatNameUsedUseCaseImpl.invoke(""), chats.data > 0)
+                is Resource.Success -> Assert.assertEquals(
+                    isChatNameUsedUseCaseImpl.invoke(
+                        IsChatNameUsedUseCase.Params(
+                            chatName = "",
+                        ),
+                    ),
+                    chats.data > 0,
+                )
+
                 else -> {}
             }
         }
@@ -68,10 +76,18 @@ internal class IsUseNameUsedUseCaseImplTest {
                 chatRepository.getChatNameCount(""),
             ).thenAnswer { databaseModel }
 
-            isChatNameUsedUseCaseImpl.invoke("")
+            isChatNameUsedUseCaseImpl.invoke(IsChatNameUsedUseCase.Params(chatName = ""))
 
             when (chatRepository.getChatNameCount("")) {
-                is Resource.Error -> Assert.assertEquals(isChatNameUsedUseCaseImpl.invoke(""), false)
+                is Resource.Error -> Assert.assertEquals(
+                    isChatNameUsedUseCaseImpl.invoke(
+                        IsChatNameUsedUseCase.Params(
+                            chatName = "",
+                        ),
+                    ),
+                    false,
+                )
+
                 else -> {}
             }
         }
@@ -84,9 +100,12 @@ internal class IsUseNameUsedUseCaseImplTest {
 
             thrown.expect(DatabaseException::class.java)
 
-            isChatNameUsedUseCaseImpl.invoke("")
+            isChatNameUsedUseCaseImpl.invoke(IsChatNameUsedUseCase.Params(chatName = ""))
 
-            Assert.assertEquals(chatRepository.getChatNameCount(""), isChatNameUsedUseCaseImpl.invoke(""))
+            Assert.assertEquals(
+                chatRepository.getChatNameCount(""),
+                isChatNameUsedUseCaseImpl.invoke(IsChatNameUsedUseCase.Params(chatName = "")),
+            )
         }
     }
 }

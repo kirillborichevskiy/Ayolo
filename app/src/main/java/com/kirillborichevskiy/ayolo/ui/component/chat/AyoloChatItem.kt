@@ -20,7 +20,7 @@ import com.kirillborichevskiy.ayolo.ui.component.common.AyoloText
 import com.kirillborichevskiy.ayolo.ui.model.UiChat
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.spacing
-import com.kirillborichevskiy.domain.util.extension.empty
+import com.kirillborichevskiy.ayolo.util.extension.empty
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

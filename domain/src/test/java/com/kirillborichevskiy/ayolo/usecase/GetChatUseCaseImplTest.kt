@@ -1,8 +1,9 @@
 package com.kirillborichevskiy.ayolo.usecase
 
-import com.kirillborichevskiy.domain.usecase.impl.GetChatsUseCaseImpl
+import com.kirillborichevskiy.domain.usecase.GetChatsUseCase
 import com.kirillborichevskiy.domain.model.DomainChat
 import com.kirillborichevskiy.domain.repository.ChatRepository
+import com.kirillborichevskiy.domain.usecase.None
 import com.kirillborichevskiy.domain.util.DatabaseError
 import com.kirillborichevskiy.domain.util.DatabaseException
 import com.kirillborichevskiy.domain.util.Resource
@@ -25,12 +26,12 @@ internal class GetChatUseCaseImplTest {
     @Mock
     lateinit var chatRepository: ChatRepository
 
-    private lateinit var getChatUseCaseImpl: GetChatsUseCaseImpl
+    private lateinit var getChatUseCaseImpl: GetChatsUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        getChatUseCaseImpl = GetChatsUseCaseImpl(chatRepository)
+        getChatUseCaseImpl = GetChatsUseCase(chatRepository)
     }
 
     @Test
@@ -42,7 +43,7 @@ internal class GetChatUseCaseImplTest {
                 Resource.Success(flowOf(listOf(DomainChat(0, "", listOf())))),
             )
 
-            getChatUseCaseImpl.invoke()
+            getChatUseCaseImpl.invoke(None)
 
             Mockito.verify(chatRepository, Mockito.times(1)).getAllChats()
         }
@@ -57,11 +58,11 @@ internal class GetChatUseCaseImplTest {
                 Resource.Error(DatabaseException("error")),
             )
 
-            getChatUseCaseImpl.invoke()
+            getChatUseCaseImpl.invoke(None)
 
             Assert.assertEquals(
                 (chatRepository.getAllChats() as Resource.Error).message,
-                (getChatUseCaseImpl.invoke() as DatabaseError).message,
+                (getChatUseCaseImpl.invoke(None) as DatabaseError).message,
             )
         }
     }
@@ -73,9 +74,9 @@ internal class GetChatUseCaseImplTest {
 
             thrown.expect(DatabaseException::class.java)
 
-            getChatUseCaseImpl.invoke()
+            getChatUseCaseImpl.invoke(None)
 
-            Assert.assertEquals(chatRepository.getAllChats(), getChatUseCaseImpl.invoke())
+            Assert.assertEquals(chatRepository.getAllChats(), getChatUseCaseImpl.invoke(None))
         }
     }
 }

@@ -10,8 +10,3 @@ internal fun LocalDateTime.toAmericanTimeString(): String {
     val formatter = DateTimeFormatter.ofPattern(TIME_FORMAT_PATTERN, Locale.US)
     return this.format(formatter)
 }
-
-internal fun String.toLocalDateTime(): LocalDateTime {
-    val formatter = DateTimeFormatter.ofPattern(TIME_FORMAT_PATTERN, Locale.US)
-    return LocalDateTime.parse(this, formatter)
-}

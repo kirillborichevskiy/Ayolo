@@ -1,7 +1,8 @@
 package com.kirillborichevskiy.ayolo.usecase
 
-import com.kirillborichevskiy.domain.usecase.impl.DeleteChatsUseCaseImpl
+import com.kirillborichevskiy.domain.usecase.DeleteChatsUseCase
 import com.kirillborichevskiy.domain.repository.InMemoryRepository
+import com.kirillborichevskiy.domain.usecase.None
 import com.kirillborichevskiy.domain.util.DatabaseException
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -21,12 +22,12 @@ internal class DeleteChatsUseCaseImplTest {
     @Mock
     lateinit var inMemoryRepository: InMemoryRepository
 
-    private lateinit var deleteChatsUseCaseImpl: DeleteChatsUseCaseImpl
+    private lateinit var deleteChatsUseCaseImpl: DeleteChatsUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        deleteChatsUseCaseImpl = DeleteChatsUseCaseImpl(inMemoryRepository)
+        deleteChatsUseCaseImpl = DeleteChatsUseCase(inMemoryRepository)
     }
 
     @Test
@@ -36,7 +37,7 @@ internal class DeleteChatsUseCaseImplTest {
                 inMemoryRepository.deleteChats(),
             ).thenReturn(Unit)
 
-            deleteChatsUseCaseImpl.invoke()
+            deleteChatsUseCaseImpl.invoke(None)
 
             Mockito.verify(inMemoryRepository, Mockito.times(1)).deleteChats()
         }
@@ -50,9 +51,9 @@ internal class DeleteChatsUseCaseImplTest {
             ).thenThrow(DatabaseException(""))
 
             thrown.expect(DatabaseException::class.java)
-            deleteChatsUseCaseImpl.invoke()
+            deleteChatsUseCaseImpl.invoke(None)
 
-            Assert.assertEquals(inMemoryRepository.deleteChats(), deleteChatsUseCaseImpl.invoke())
+            Assert.assertEquals(inMemoryRepository.deleteChats(), deleteChatsUseCaseImpl.invoke(None))
         }
     }
 }

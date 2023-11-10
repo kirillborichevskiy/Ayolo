@@ -12,6 +12,9 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.javax)
 
+    implementation(libs.hilt.core)
+    ksp(libs.hilt.compiler)
+
     testImplementation(libs.junit)
     testImplementation(libs.turbine)
     testImplementation(libs.mockito)
