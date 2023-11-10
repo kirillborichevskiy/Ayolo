@@ -51,7 +51,7 @@ internal fun ChatsSection(
             AyoloTopBar(
                 title = stringResource(R.string.recent_chats),
                 endComposable = {
-                    IconButton(onClick = onDeleteClick) {
+                    IconButton(onClick = if (isSelected) onDeleteClick else onCreateNewChat) {
                         Icon(
                             tint = MaterialTheme.colorScheme.onPrimary,
                             painter = painterResource(
