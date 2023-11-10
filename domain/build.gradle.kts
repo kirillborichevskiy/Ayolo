@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.jvm)
+    alias(libs.plugins.ksp)
 }
 
 java {
@@ -10,4 +11,9 @@ java {
 dependencies {
     implementation(libs.coroutines)
     implementation(libs.javax)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.turbine)
+    testImplementation(libs.mockito)
+    testImplementation(libs.coroutines.test)
 }
