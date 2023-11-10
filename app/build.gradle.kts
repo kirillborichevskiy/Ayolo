@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -10,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.kirillborichevskiy.ayolo"
-        minSdk = 25
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -46,6 +47,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
     implementation(libs.activity.compose)
 
     implementation(platform(libs.compose.bom))
@@ -53,6 +55,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.kotlinx.collections.immutable)
 
     implementation(libs.compose.destinations.core)
     implementation(libs.compose.destinations.animations)
@@ -62,16 +65,17 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
-    implementation(libs.bundles.room)
-    ksp(libs.room.compiler)
+    implementation(libs.hilt.navigation)
 
     implementation(libs.coroutines)
 
-    testImplementation(libs.junit)
-    testImplementation(libs.bundles.mockk)
-    testImplementation(libs.turbine)
+    implementation(libs.lottie.compose)
+
+    implementation(libs.navigation.compose)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    implementation(project(":domain"))
+    implementation(project(":data"))
 }
