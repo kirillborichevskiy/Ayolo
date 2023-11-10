@@ -34,9 +34,14 @@
 
 # 📹 Demo
 
-https://jmp.sh/s/0tcGkWOUkQ7oycbzPWt9
+
+https://github.com/kirillborichevskiy/Ayolo/assets/150150029/e2a5cc52-35d8-45d0-9a29-dd5b2a5b903b
+
+
+
 
 # 👀 Figma
 
 [Link to Figma I've created](https://www.figma.com/file/VYDukMO9sWZUaivki95wnd/Untitled?type=design&node-id=0-1&mode=design&t=hiMv0BS5rah6DWRV-0)
+
 ![](https://i.ibb.co/wCjpfL6/Group-2-1.png)
