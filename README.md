@@ -23,6 +23,12 @@
  - Mockito  
  - Turbine
 
+# 🧑‍💻 Environment
+**Android Studio Version** : Iguana 2023.2.1 Canary 12
+**Gradle Version:** 8.4
+**Android Gradle Plugin Version:** 8.1.2
+**Java Version:** 17
+
  
 # 💡 What's inside the app
 1. Splash screen  
