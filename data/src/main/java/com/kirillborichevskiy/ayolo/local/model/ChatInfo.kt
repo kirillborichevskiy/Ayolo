@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.kirillborichevskiy.ayolo.local.model.ChatInfo.Companion.CHATS_INFO_DATABASE_NAME
 
 @Entity(tableName = CHATS_INFO_DATABASE_NAME)
-data class ChatInfo(
+internal data class ChatInfo(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = CHAT_ID_COLUMN_NAME)
     val id: Int = 0,

@@ -9,8 +9,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-data class Spacing(
+internal data class Spacing(
     val default: Dp = 0.dp,
+    val unitary: Dp = 1.dp,
+    val tiny: Dp = 2.dp,
+    val extraExtraSmall: Dp = 4.dp,
     val extraSmall: Dp = 8.dp,
     val small: Dp = 12.dp,
     val medium: Dp = 16.dp,
@@ -22,7 +25,7 @@ data class Spacing(
 
 internal val LocalSpacing = staticCompositionLocalOf(::Spacing)
 
-val MaterialTheme.spacing: Spacing
+internal val MaterialTheme.spacing: Spacing
     @Composable
     @ReadOnlyComposable
     get() = LocalSpacing.current

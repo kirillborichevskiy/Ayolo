@@ -1,4 +1,4 @@
-package com.kirillborichevskiy.ayolo.ui.component
+package com.kirillborichevskiy.ayolo.ui.component.common
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

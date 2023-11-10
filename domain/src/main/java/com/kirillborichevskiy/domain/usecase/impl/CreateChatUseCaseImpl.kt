@@ -1,4 +1,4 @@
-package com.kirillborichevskiy.ayolo.local.usecase
+package com.kirillborichevskiy.domain.usecase.impl
 
 import com.kirillborichevskiy.domain.repository.ChatRepository
 import com.kirillborichevskiy.domain.usecase.CreateChatUseCase

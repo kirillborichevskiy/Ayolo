@@ -1,8 +1,7 @@
-package com.kirillborichevskiy.ayolo.ui.component
+package com.kirillborichevskiy.ayolo.ui.component.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
@@ -52,7 +51,6 @@ internal fun AyoloInputField(
 
     TextField(
         modifier = modifier
-            .fillMaxWidth()
             .border(
                 width = 1.dp,
                 color = if (isFocused) FocusedBorderColor else UnfocusedBorderColor,

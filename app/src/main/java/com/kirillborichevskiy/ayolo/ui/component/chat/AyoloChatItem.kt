@@ -1,7 +1,7 @@
-package com.kirillborichevskiy.ayolo.ui.component
+package com.kirillborichevskiy.ayolo.ui.component.chat
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -16,22 +16,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.kirillborichevskiy.ayolo.ui.component.common.AyoloText
+import com.kirillborichevskiy.ayolo.ui.model.UiChat
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.spacing
 import com.kirillborichevskiy.domain.util.extension.empty
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ChatItem(
     modifier: Modifier = Modifier,
-    name: String = String.empty,
-    message: String = String.empty,
-    timestamp: String = String.empty,
+    chatItem: UiChat,
+    onLongClick: (chatId: Int) -> Unit,
     onClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.secondary)
-            .clickable(onClick = onClick)
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = { onLongClick(chatItem.id) },
+            )
             .height(IntrinsicSize.Max)
             .padding(
                 horizontal = MaterialTheme.spacing.medium,
@@ -39,7 +43,7 @@ internal fun ChatItem(
             ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        AyoloChatAvatar(letter = name.first())
+        AyoloChatAvatar(letter = chatItem.name.first())
         Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
         Column(
             modifier = Modifier
@@ -48,18 +52,18 @@ internal fun ChatItem(
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             AyoloText(
-                text = name,
+                text = chatItem.name,
                 style = MaterialTheme.typography.bodyMedium,
             )
             AyoloText(
-                text = message,
+                text = chatItem.messages.firstOrNull()?.text ?: String.empty,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSecondary,
             )
         }
         Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
         AyoloText(
-            text = timestamp,
+            text = chatItem.messages.firstOrNull()?.timestamp ?: String.empty,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSecondary,
         )
@@ -71,9 +75,12 @@ internal fun ChatItem(
 private fun ChatItemPreview() {
     AyoloTheme {
         ChatItem(
-            name = "John Doe",
-            message = "Some message is here from John",
-            timestamp = "12:00AM",
+            chatItem = UiChat(
+                id = 1,
+                name = "John Doe",
+                messages = emptyList(),
+            ),
+            onLongClick = {},
             onClick = {},
         )
     }

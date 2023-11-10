@@ -12,7 +12,7 @@ import com.kirillborichevskiy.ayolo.local.model.Message
     exportSchema = false,
 )
 @TypeConverters(LocalDateTimeConverter::class)
-abstract class ChatDatabase : RoomDatabase() {
+internal abstract class ChatDatabase : RoomDatabase() {
     abstract val chatDao: ChatDao
 
     companion object {

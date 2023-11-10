@@ -1,8 +1,8 @@
 package com.kirillborichevskiy.ayolo.ui.component
 
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,11 +12,11 @@ import com.kirillborichevskiy.ayolo.R
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 
 @Composable
-fun AyoloFloatingButton(
+internal fun AyoloFloatingButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-    LargeFloatingActionButton(
+    FloatingActionButton(
         modifier = modifier,
         shape = CircleShape,
         containerColor = MaterialTheme.colorScheme.onPrimary,

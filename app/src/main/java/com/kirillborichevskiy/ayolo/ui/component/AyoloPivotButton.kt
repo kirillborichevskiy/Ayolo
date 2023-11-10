@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.kirillborichevskiy.ayolo.ui.component.common.AyoloText
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.spacing
 import com.kirillborichevskiy.domain.util.extension.empty

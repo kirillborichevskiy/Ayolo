@@ -17,4 +17,4 @@ class DatabaseError<T>(
     message = message,
 )
 
-class DatabaseException(override val message: String) : Exception()
+class DatabaseException(override val message: String) : RuntimeException()

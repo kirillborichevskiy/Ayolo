@@ -4,10 +4,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kirillborichevskiy.ayolo.ui.theme.color.ElectricBlue
 import com.kirillborichevskiy.ayolo.ui.theme.color.GhostWhite
+import com.kirillborichevskiy.ayolo.ui.theme.color.LightBlue
+import com.kirillborichevskiy.ayolo.ui.theme.color.LightGray
 import com.kirillborichevskiy.ayolo.ui.theme.color.PersianBlue
 import com.kirillborichevskiy.ayolo.ui.theme.color.White
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.LocalSpacing
@@ -21,6 +22,8 @@ private val MainColorScheme = lightColorScheme(
     onPrimary = PersianBlue,
     secondary = GhostWhite,
     onSecondary = ElectricBlue,
+    tertiary = LightGray,
+    onTertiary = LightBlue,
 )
 
 @Composable
@@ -29,10 +32,14 @@ internal fun AyoloTheme(
 ) {
     val systemUiController = rememberSystemUiController()
 
-    SideEffect {
-        systemUiController.setStatusBarColor(
-            color = MainColorScheme.primary,
-            darkIcons = true,
+    systemUiController.apply {
+        setStatusBarColor(
+            color = MainColorScheme.onPrimary,
+            darkIcons = false,
+        )
+        setNavigationBarColor(
+            color = MainColorScheme.onPrimary,
+            darkIcons = false,
         )
     }
 

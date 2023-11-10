@@ -1,4 +1,4 @@
-package com.kirillborichevskiy.ayolo.ui.component
+package com.kirillborichevskiy.ayolo.ui.component.chat
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.kirillborichevskiy.ayolo.ui.component.common.AyoloText
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.spacing
 

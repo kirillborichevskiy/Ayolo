@@ -10,9 +10,8 @@ accompanist = "0.32.0"
 hilt = "2.48.1"
 room = "2.6.0"
 junit = "4.13.2"
-mockk = "1.13.7"
+mockito = "3.9.0"
 androidx-junit = "1.1.5"
-espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.10.0"
 org-jetbrains-kotlin-jvm = "1.9.10"
@@ -20,7 +19,11 @@ ktx = "1.12.0"
 turbine = "1.0.0"
 hilt-common = "1.1.0"
 coroutines = "1.7.3"
+coroutines-test = "1.7.3"
 kotlinx-collections = "0.3.6"
+lottie = "6.0.1"
+navigation = "2.7.5"
+javax = "1"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
@@ -37,10 +40,14 @@ ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 material3 = { module = "androidx.compose.material3:material3" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 compose-destinations-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "compose-destinations" }
 compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "compose-destinations" }
 compose-destinations-animations = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "compose-destinations" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 
 accompanist-systemUiController = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 
@@ -52,22 +59,17 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-
-mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
-mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
-mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk" }
-
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 
-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections" }
+javax = { module = "javax.inject:javax.inject", version.ref = "javax" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -76,8 +78,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
-kotlin-parcelize = { id = "kotlin-parcelize" }
 
 [bundles]
 room = ["room-ktx", "room-runtime"]
-mockk = ["mockk-core", "mockk-android", "mockk-agent"]

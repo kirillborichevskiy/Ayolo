@@ -69,9 +69,9 @@ dependencies {
 
     implementation(libs.coroutines)
 
-    testImplementation(libs.junit)
-    testImplementation(libs.bundles.mockk)
-    testImplementation(libs.turbine)
+    implementation(libs.lottie.compose)
+
+    implementation(libs.navigation.compose)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)

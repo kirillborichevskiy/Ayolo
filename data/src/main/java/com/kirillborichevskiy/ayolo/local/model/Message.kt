@@ -19,7 +19,7 @@ import java.time.LocalDateTime
         ),
     ],
 )
-data class Message(
+internal data class Message(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = MESSAGE_ID_COLUMN_NAME)
     val id: Int = 0,

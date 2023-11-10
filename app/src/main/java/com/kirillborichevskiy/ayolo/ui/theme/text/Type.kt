@@ -10,7 +10,7 @@ import com.kirillborichevskiy.ayolo.ui.theme.color.White
 
 internal val Typography = Typography(
     headlineLarge = TextStyle(
-        fontSize = TextSize.giant,
+        fontSize = TextSize.extraLarge,
         fontWeight = FontWeight.Bold,
         fontFamily = Mulish,
         color = PersianBlue,

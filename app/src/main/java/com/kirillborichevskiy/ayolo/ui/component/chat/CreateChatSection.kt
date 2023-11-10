@@ -1,4 +1,4 @@
-package com.kirillborichevskiy.ayolo.ui.component
+package com.kirillborichevskiy.ayolo.ui.component.chat
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.kirillborichevskiy.ayolo.R
+import com.kirillborichevskiy.ayolo.ui.component.AyoloPivotButton
+import com.kirillborichevskiy.ayolo.ui.component.common.AyoloInputField
+import com.kirillborichevskiy.ayolo.ui.component.common.AyoloText
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.spacing
 import com.kirillborichevskiy.domain.util.extension.empty
@@ -28,7 +31,7 @@ internal fun CreateChatSection(
     onClearChatName: () -> Unit,
     onCreateNewChat: (String) -> Unit,
 ) {
-    val isEnabled = remember(chatName) { chatName.isNotEmpty() }
+    val isEnabled = remember(chatName) { chatName.isNotBlank() }
 
     Column(
         modifier = modifier
@@ -49,6 +52,7 @@ internal fun CreateChatSection(
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.giant))
         AyoloInputField(
+            modifier = Modifier.fillMaxWidth(),
             value = chatName,
             placeholderText = stringResource(id = R.string.chat_name),
             onClearClick = onClearChatName,

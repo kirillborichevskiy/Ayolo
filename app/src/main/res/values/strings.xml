@@ -6,4 +6,7 @@
     <string name="specify_chat_name">Please specify unique chat name</string>
     <string name="recent_chats">Recent Chats</string>
     <string name="error_fetching_chat">Error fetching chat from the database</string>
+    <string name="type_here">Type here</string>
+    <string name="chat_name_error">Chat name already exists</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>
