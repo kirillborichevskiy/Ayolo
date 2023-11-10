@@ -54,6 +54,7 @@ accompanist-systemUiController = { module = "com.google.accompanist:accompanist-
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-common" }
+hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
 
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }

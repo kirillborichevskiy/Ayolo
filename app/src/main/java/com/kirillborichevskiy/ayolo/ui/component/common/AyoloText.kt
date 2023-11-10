@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.kirillborichevskiy.ayolo.R
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
-import com.kirillborichevskiy.domain.util.extension.empty
+import com.kirillborichevskiy.ayolo.util.extension.empty
 
 @Composable
 internal fun AyoloText(

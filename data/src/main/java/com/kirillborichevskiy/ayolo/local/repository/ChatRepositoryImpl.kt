@@ -11,7 +11,7 @@ import com.kirillborichevskiy.domain.repository.ChatRepository
 import com.kirillborichevskiy.domain.repository.IDispatcherProvider
 import com.kirillborichevskiy.domain.util.DatabaseError
 import com.kirillborichevskiy.domain.util.Resource
-import com.kirillborichevskiy.domain.util.extension.empty
+import com.kirillborichevskiy.domain.util.extension.errorMessage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
@@ -32,7 +32,7 @@ internal class ChatRepositoryImpl @Inject constructor(
             }
             Resource.Success(chatsFlow)
         } catch (e: Exception) {
-            DatabaseError(e.message ?: String.empty)
+            DatabaseError(e.message ?: String.errorMessage)
         }
 
     override fun getMessagesById(chatId: Int): Resource<Flow<List<DomainMessage>?>> =
@@ -42,7 +42,7 @@ internal class ChatRepositoryImpl @Inject constructor(
             } ?: flowOf(null)
             Resource.Success(chatFlow)
         } catch (e: Exception) {
-            DatabaseError(e.message ?: String.empty)
+            DatabaseError(e.message ?: String.errorMessage)
         }
 
     override suspend fun getChatNameCount(chatName: String): Resource<Int> =
@@ -51,7 +51,7 @@ internal class ChatRepositoryImpl @Inject constructor(
                 val chatCount = chatDao.getChatCountByName(chatName)
                 Resource.Success(chatCount)
             } catch (e: Exception) {
-                DatabaseError(e.message ?: String.empty)
+                DatabaseError(e.message ?: String.errorMessage)
             }
         }
 

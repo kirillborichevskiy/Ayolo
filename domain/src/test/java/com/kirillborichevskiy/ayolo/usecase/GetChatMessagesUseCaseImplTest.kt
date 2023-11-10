@@ -1,8 +1,8 @@
 package com.kirillborichevskiy.ayolo.usecase
 
-import com.kirillborichevskiy.domain.usecase.impl.GetChatMessagesUseCaseImpl
 import com.kirillborichevskiy.domain.model.DomainMessage
 import com.kirillborichevskiy.domain.repository.ChatRepository
+import com.kirillborichevskiy.domain.usecase.GetChatMessagesUseCase
 import com.kirillborichevskiy.domain.util.DatabaseError
 import com.kirillborichevskiy.domain.util.DatabaseException
 import com.kirillborichevskiy.domain.util.Resource
@@ -26,12 +26,12 @@ internal class GetChatMessagesUseCaseImplTest {
     @Mock
     lateinit var chatRepository: ChatRepository
 
-    private lateinit var getChatMessagesUseCaseImpl: GetChatMessagesUseCaseImpl
+    private lateinit var getChatMessagesUseCaseImpl: GetChatMessagesUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        getChatMessagesUseCaseImpl = GetChatMessagesUseCaseImpl(chatRepository)
+        getChatMessagesUseCaseImpl = GetChatMessagesUseCase(chatRepository)
     }
 
     @Test
@@ -43,7 +43,7 @@ internal class GetChatMessagesUseCaseImplTest {
                 Resource.Success(flowOf(listOf(DomainMessage(0, "", LocalDateTime.MAX)))),
             )
 
-            getChatMessagesUseCaseImpl.invoke(1)
+            getChatMessagesUseCaseImpl.invoke(GetChatMessagesUseCase.Params(chatId = 1))
 
             Mockito.verify(chatRepository, Mockito.times(1)).getMessagesById(1)
         }
@@ -58,11 +58,11 @@ internal class GetChatMessagesUseCaseImplTest {
                 Resource.Error(DatabaseException("error")),
             )
 
-            getChatMessagesUseCaseImpl.invoke(1)
+            getChatMessagesUseCaseImpl.invoke(GetChatMessagesUseCase.Params(chatId = 1))
 
             Assert.assertEquals(
                 (chatRepository.getMessagesById(1) as Resource.Error).message,
-                (getChatMessagesUseCaseImpl.invoke(1) as DatabaseError).message,
+                (getChatMessagesUseCaseImpl.invoke(GetChatMessagesUseCase.Params(chatId = 1)) as DatabaseError).message,
             )
         }
     }
@@ -74,9 +74,12 @@ internal class GetChatMessagesUseCaseImplTest {
 
             thrown.expect(DatabaseException::class.java)
 
-            getChatMessagesUseCaseImpl.invoke(1)
+            getChatMessagesUseCaseImpl.invoke(GetChatMessagesUseCase.Params(chatId = 1))
 
-            Assert.assertEquals(chatRepository.getMessagesById(1), getChatMessagesUseCaseImpl.invoke(1))
+            Assert.assertEquals(
+                chatRepository.getMessagesById(1),
+                getChatMessagesUseCaseImpl.invoke(GetChatMessagesUseCase.Params(chatId = 1)),
+            )
         }
     }
 }

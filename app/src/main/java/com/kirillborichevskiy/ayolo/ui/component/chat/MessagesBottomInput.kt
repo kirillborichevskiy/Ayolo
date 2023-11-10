@@ -32,7 +32,7 @@ internal fun MessageBottomInput(
     onClearValue: () -> Unit,
     onMessageFieldChange: (String) -> Unit,
 ) {
-    val isEnabled = remember(inputValue) { inputValue.isNotBlank() }
+    val isEnabled = remember(inputValue, inputValue::isNotBlank)
 
     Row(
         modifier = Modifier

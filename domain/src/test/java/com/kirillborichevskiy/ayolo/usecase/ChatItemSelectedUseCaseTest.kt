@@ -1,7 +1,7 @@
 package com.kirillborichevskiy.ayolo.usecase
 
 import com.kirillborichevskiy.domain.repository.InMemoryRepository
-import com.kirillborichevskiy.domain.usecase.impl.ChatItemSelectedUseCaseImpl
+import com.kirillborichevskiy.domain.usecase.ChatItemSelectedUseCase
 import com.kirillborichevskiy.domain.util.DatabaseException
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -13,7 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-internal class ChatItemSelectedUseCaseImplTest {
+internal class ChatItemSelectedUseCaseTest {
 
     @get:Rule
     val thrown: ExpectedException = ExpectedException.none()
@@ -21,12 +21,12 @@ internal class ChatItemSelectedUseCaseImplTest {
     @Mock
     lateinit var inMemoryRepository: InMemoryRepository
 
-    private lateinit var chatItemSelectedUseCaseImpl: ChatItemSelectedUseCaseImpl
+    private lateinit var chatItemSelectedUseCase: ChatItemSelectedUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        chatItemSelectedUseCaseImpl = ChatItemSelectedUseCaseImpl(inMemoryRepository)
+        chatItemSelectedUseCase = ChatItemSelectedUseCase(inMemoryRepository)
     }
 
     @Test
@@ -36,9 +36,12 @@ internal class ChatItemSelectedUseCaseImplTest {
                 inMemoryRepository.selectChat(1),
             ).thenReturn(Unit)
 
-            chatItemSelectedUseCaseImpl.invoke(1)
+            chatItemSelectedUseCase.invoke(ChatItemSelectedUseCase.Params(chatId = 1))
 
-            Mockito.verify(inMemoryRepository, Mockito.times(1)).selectChat(1)
+            Mockito.verify(
+                inMemoryRepository,
+                Mockito.times(1),
+            ).selectChat(1)
         }
     }
 
@@ -50,9 +53,12 @@ internal class ChatItemSelectedUseCaseImplTest {
             ).thenThrow(DatabaseException(""))
 
             thrown.expect(DatabaseException::class.java)
-            chatItemSelectedUseCaseImpl.invoke(1)
+            chatItemSelectedUseCase.invoke(ChatItemSelectedUseCase.Params(chatId = 1))
 
-            Assert.assertEquals(inMemoryRepository.selectChat(1), chatItemSelectedUseCaseImpl.invoke(1))
+            Assert.assertEquals(
+                inMemoryRepository.selectChat(1),
+                chatItemSelectedUseCase.invoke(ChatItemSelectedUseCase.Params(chatId = 1)),
+            )
         }
     }
 }

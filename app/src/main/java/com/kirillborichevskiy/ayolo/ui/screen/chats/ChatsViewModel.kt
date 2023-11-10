@@ -9,6 +9,7 @@ import com.kirillborichevskiy.domain.usecase.ChatItemSelectedUseCase
 import com.kirillborichevskiy.domain.usecase.DeleteChatsUseCase
 import com.kirillborichevskiy.domain.usecase.GetChatsUseCase
 import com.kirillborichevskiy.domain.usecase.GetSelectedIdsUseCase
+import com.kirillborichevskiy.domain.usecase.None
 import com.kirillborichevskiy.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
@@ -41,27 +42,29 @@ internal class ChatsViewModel @Inject constructor(
     }
 
     private fun getAllChats() {
-        when (val chatsResource = getChatsUseCase()) {
-            is Resource.Success -> viewModelScope.launch {
-                chatsResource.data.collect { domainChatList ->
-                    _chats.emit(
-                        domainChatList.persistentMap { domainChat ->
-                            domainChat.toUiChat()
-                        },
-                    )
-                    delay(SPLASH_SCREEN_DELAY)
-                    _isChatsLoading.emit(false)
+        viewModelScope.launch(handler) {
+            when (val chatsResource = getChatsUseCase.invoke(None)) {
+                is Resource.Success -> viewModelScope.launch {
+                    chatsResource.data.collect { domainChatList ->
+                        _chats.emit(
+                            domainChatList.persistentMap { domainChat ->
+                                domainChat.toUiChat()
+                            },
+                        )
+                        delay(SPLASH_SCREEN_DELAY)
+                        _isChatsLoading.emit(false)
+                    }
                 }
-            }
 
-            is Resource.Error -> triggerToastError()
+                is Resource.Error -> triggerToastError()
+            }
         }
     }
 
     fun onLongChatsClick(chatId: Int) {
-        viewModelScope.launch {
-            chatItemSelectedUseCase(chatId)
-            val selectedIds = getSelectedIdsUseCase()
+        viewModelScope.launch(handler) {
+            chatItemSelectedUseCase.invoke(ChatItemSelectedUseCase.Params(chatId))
+            val selectedIds = getSelectedIdsUseCase.invoke(None)
             _chats.emit(
                 _chats.value.map { chat ->
                     chat.copy(isSelected = selectedIds.contains(chat.id))
@@ -71,8 +74,8 @@ internal class ChatsViewModel @Inject constructor(
         }
     }
 
-    fun onDeleteClick() = viewModelScope.launch {
-        deleteChatsUseCase()
+    fun onDeleteClick() = viewModelScope.launch(handler) {
+        deleteChatsUseCase.invoke(None)
         _isSelected.emit(false)
     }
 

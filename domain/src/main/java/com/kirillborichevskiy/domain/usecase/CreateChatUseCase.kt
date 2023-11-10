@@ -1,5 +1,13 @@
 package com.kirillborichevskiy.domain.usecase
 
-interface CreateChatUseCase {
-    suspend operator fun invoke(chatName: String)
+import com.kirillborichevskiy.domain.repository.ChatRepository
+import javax.inject.Inject
+
+class CreateChatUseCase @Inject constructor(
+    private val chatRepository: ChatRepository,
+) : BaseUseCase<Unit, CreateChatUseCase.Params>() {
+    data class Params(val chatName: String)
+
+    override suspend operator fun invoke(params: Params) =
+        chatRepository.insertChat(params.chatName)
 }

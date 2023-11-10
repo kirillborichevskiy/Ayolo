@@ -1,7 +1,7 @@
 package com.kirillborichevskiy.ayolo.usecase
 
-import com.kirillborichevskiy.domain.usecase.impl.CreateChatUseCaseImpl
 import com.kirillborichevskiy.domain.repository.ChatRepository
+import com.kirillborichevskiy.domain.usecase.CreateChatUseCase
 import com.kirillborichevskiy.domain.util.DatabaseException
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -13,7 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-internal class CreateChatUseCaseImplTest {
+internal class CreateChatUseCaseTest {
 
     @get:Rule
     val thrown: ExpectedException = ExpectedException.none()
@@ -21,12 +21,12 @@ internal class CreateChatUseCaseImplTest {
     @Mock
     lateinit var chatRepository: ChatRepository
 
-    private lateinit var createChatUseCaseImpl: CreateChatUseCaseImpl
+    private lateinit var createChatUseCaseImpl: CreateChatUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        createChatUseCaseImpl = CreateChatUseCaseImpl(chatRepository)
+        createChatUseCaseImpl = CreateChatUseCase(chatRepository)
     }
 
     @Test
@@ -36,7 +36,7 @@ internal class CreateChatUseCaseImplTest {
                 chatRepository.insertChat("name"),
             ).thenReturn(Unit)
 
-            createChatUseCaseImpl.invoke("")
+            createChatUseCaseImpl.invoke(CreateChatUseCase.Params(chatName = ""))
 
             Mockito.verify(chatRepository, Mockito.times(1)).insertChat("")
         }
@@ -50,9 +50,9 @@ internal class CreateChatUseCaseImplTest {
             ).thenThrow(DatabaseException(""))
 
             thrown.expect(DatabaseException::class.java)
-            createChatUseCaseImpl.invoke("")
+            createChatUseCaseImpl.invoke(CreateChatUseCase.Params(chatName = ""))
 
-            Assert.assertEquals(chatRepository.insertChat("name"), createChatUseCaseImpl.invoke("name"))
+            Assert.assertEquals(chatRepository.insertChat("name"), createChatUseCaseImpl.invoke(CreateChatUseCase.Params(chatName = "name")))
         }
     }
 }
