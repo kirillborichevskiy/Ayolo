@@ -20,7 +20,8 @@ import com.kirillborichevskiy.ayolo.ui.component.common.AyoloText
 import com.kirillborichevskiy.ayolo.ui.model.UiChat
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
 import com.kirillborichevskiy.ayolo.ui.theme.spacing.spacing
-import com.kirillborichevskiy.ayolo.util.extension.empty
+import com.kirillborichevskiy.domain.util.extension.empty
+import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -78,7 +79,7 @@ private fun ChatItemPreview() {
             chatItem = UiChat(
                 id = 1,
                 name = "John Doe",
-                messages = emptyList(),
+                messages = persistentListOf(),
             ),
             onLongClick = {},
             onClick = {},

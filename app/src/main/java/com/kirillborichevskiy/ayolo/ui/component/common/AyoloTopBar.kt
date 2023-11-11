@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.kirillborichevskiy.ayolo.ui.theme.AyoloTheme
-import com.kirillborichevskiy.ayolo.util.extension.empty
+import com.kirillborichevskiy.domain.util.extension.empty
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
