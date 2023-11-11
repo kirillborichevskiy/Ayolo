@@ -4,6 +4,7 @@ import com.kirillborichevskiy.ayolo.ui.model.UiChat
 import com.kirillborichevskiy.ayolo.ui.model.UiMessage
 import com.kirillborichevskiy.domain.model.DomainChat
 import com.kirillborichevskiy.domain.model.DomainMessage
+import kotlinx.collections.immutable.toPersistentList
 
 internal fun DomainChat.toUiChat(): UiChat {
     val domainMessages = messages.map { message ->
@@ -17,7 +18,7 @@ internal fun DomainChat.toUiChat(): UiChat {
     return UiChat(
         id = id,
         name = name,
-        messages = domainMessages,
+        messages = domainMessages.toPersistentList(),
     )
 }
 

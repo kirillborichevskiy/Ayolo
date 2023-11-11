@@ -2,10 +2,10 @@ package com.kirillborichevskiy.ayolo.ui.screen.creator
 
 import androidx.lifecycle.viewModelScope
 import com.kirillborichevskiy.ayolo.ui.screen.BaseViewModel
-import com.kirillborichevskiy.ayolo.util.extension.empty
 import com.kirillborichevskiy.ayolo.util.validator.TextValidator
 import com.kirillborichevskiy.domain.usecase.CreateChatUseCase
 import com.kirillborichevskiy.domain.usecase.IsChatNameUsedUseCase
+import com.kirillborichevskiy.domain.util.extension.empty
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow

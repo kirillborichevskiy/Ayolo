@@ -4,7 +4,6 @@ import com.kirillborichevskiy.domain.model.DomainChat
 import com.kirillborichevskiy.domain.repository.ChatRepository
 import com.kirillborichevskiy.domain.util.DatabaseError
 import com.kirillborichevskiy.domain.util.Resource
-import com.kirillborichevskiy.domain.util.extension.empty
 import com.kirillborichevskiy.domain.util.extension.errorMessage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

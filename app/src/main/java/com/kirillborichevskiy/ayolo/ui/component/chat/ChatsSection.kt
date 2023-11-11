@@ -110,7 +110,7 @@ private fun ChatsSectionPreview() {
                 UiChat(
                     id = 1,
                     name = "Fullsnack Developers",
-                    messages = listOf(
+                    messages = persistentListOf(
                         UiMessage(
                             id = 1,
                             text = "Hello guys, we have discussed about ...",

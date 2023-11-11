@@ -3,13 +3,13 @@ package com.kirillborichevskiy.ayolo.ui.screen.messages
 import androidx.lifecycle.viewModelScope
 import com.kirillborichevskiy.ayolo.ui.model.UiMessage
 import com.kirillborichevskiy.ayolo.ui.screen.BaseViewModel
-import com.kirillborichevskiy.ayolo.util.extension.empty
 import com.kirillborichevskiy.ayolo.util.extension.persistentMap
 import com.kirillborichevskiy.ayolo.util.mapper.toUiMessage
 import com.kirillborichevskiy.ayolo.util.validator.TextValidator
 import com.kirillborichevskiy.domain.usecase.GetChatMessagesUseCase
 import com.kirillborichevskiy.domain.usecase.SendMessageUseCase
 import com.kirillborichevskiy.domain.util.Resource
+import com.kirillborichevskiy.domain.util.extension.empty
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
